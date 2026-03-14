@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linux Basics and Administration Training</title>
+  <style>
+    :root{
+      --ink:#0f172a;
+      --line:#e5e7eb;
+      --code:#f8fafc;
+      --panel:#ffffff;
+      --brand1:#2563eb;
+      --brand2:#22d3ee;
+      --accent:#0ea5e9;
+    }
+    html, body {
+      margin:0; padding:0; background:#f7fafc; color:var(--ink);
+      font-family: Calibri, "Segoe UI", Arial;
+      font-size:11pt; line-height:1.45;
+    }
+    .page { max-width:1000px; margin:0 auto; padding:0 16px 40px; }
+
+    /* Banner */
+    .banner{
+      background: linear-gradient(90deg, var(--brand1), var(--brand2));
+      color:#fff;
+    }
+    .banner-inner{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      gap:20px;
+      padding:20px;
+    }
+
+    .title{ margin:0; font-weight:800; font-size:28px; }
+
+    /* 👉 Left side trainer block dominate */
+    .trainer{
+      margin-top:10px;
+      font-weight:700;
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    /* 👉 Bigger dominating logo */
+    .logo{
+      width:230px;
+      height:auto;
+      object-fit:contain;
+      background:#fff;
+      border-radius:12px;
+      padding:10px;
+      border:1px solid #e2e8f0;
+      box-shadow:0 2px 14px rgba(0,0,0,.20);
+    }
+
+    @media (max-width:600px){
+      .banner-inner{ grid-template-columns:1fr; }
+      .logo{ width:180px; margin-top:15px; }
+    }
+
+    .content{
+      background:var(--panel);
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    }
+    .section{ padding:18px; }
+    .section + .section { border-top:1px solid var(--line); }
+
+    h2{
+      margin:.2em 0 .6em;
+      padding-bottom:6px;
+      border-bottom:2px solid var(--accent);
+      font-weight:800;
+    }
+    h3{ margin:.8em 0 .45em; }
+
+    pre{
+      background:var(--code);
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:12px;
+      white-space:pre-wrap;
+      overflow:auto;
+      font-family:Consolas, monospace;
+      font-size:10pt;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔥 BANNER -->
+  <div class="banner">
+    <div class="page">
+      <div class="banner-inner">
+
+        <!-- LEFT BLOCK (Trainer) -->
+        <div>
+          <h1 class="title">Linux Basics and Administration Training</h1>
+
+          <div class="trainer">
+            Trainer Name: <b>Saikrishna Bathini</b><br>
+            Organization: <b>HCL Technologies</b><br>
+            Designation: <b>Senior Analyst</b><br>
+            Role: <b>AWS Cloud Operations & Infrastructure Support Engineer</b>
+          </div>
+        </div>
+
+        <!-- RIGHT BLOCK (BIG VIGNAN LOGO) -->
+        <img class="logo"
+        src="https://manabuki.in/wp-content/uploads/2024/12/Vignan-Logo-1.png"
+        alt="Vignan University Logo">
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="content">
+
+      <!-- EVERYTHING BELOW IS SAME – YOUR ORIGINAL CONTENT UNCHANGED -->
+
+      <!-- TOPIC‑1 -->
+      <section class="section">
+        <h2>Topic-1: Linux Intruduction</h2>
+
+        <h3>What is Linux?</h3>
+        <p>
+          Linux is an operating system just like Windows. But Windows is paid, while Linux is free and open-source.
+          That is why many companies use Linux.
+        </p>
+        <p>It was created by Linus Torvalds in 1991 </p>
+
+        <h3>* Difference Between Linux and Windows</h3>
+        <ol>
+          <li><b>Multi-User Support</b><br>
+              Linux: Many users can connect at the same time using SSH.<br>
+              Windows: Only 1–2 remote users can connect. Extra users need paid licenses.</li>
+
+          <li><b>Cost</b><br>
+              Linux: Free to use.<br>
+              Windows: Paid, requires license.</li>
+
+          <li><b>Security</b><br>
+              Linux: Very secure, strong user permissions.<br>
+              Windows: More virus attacks, needs antivirus software.</li>
+
+          <li><b>Speed</b><br>
+              Linux: Runs very fast, even on low RAM.<br>
+              Windows: Slower compared to Linux, because it uses heavy GUI.</li>
+
+          <li><b>Interface</b><br>
+              Linux: command-based<br>
+              Windows: User‑friendly GUI</li>
+
+          <li><b>Usage in Real-Time Projects</b><br>
+              Linux: Used in 95% of IT projects like Cloud, DevOps, Servers, Automation, Cybersecurity.<br>
+              Windows: Mainly used for personal work, offices, and gaming.</li>
+        </ol>
+
+        <h3>Linux Folder Structure</h3>
+<pre>/home Users home directory
+/root Root user home
+/etc Configuration files
+/var Logs, cache
+/usr Applications & libraries
+/opt Optional third‑party apps
+/boot Bootloader files
+/dev Device files
+/proc Process info
+/sys Kernel info
+/tmp Temporary files
+</pre>
+
+        <h3>Important Ports Used in Linux Servers</h3>
+<pre>Port 22 → SSH login  → Used to login to Linux servers securely.
+Port 80 → Website     → Used for normal websites without security.
+Port 443 → Secure website → SSL/TLS encrypted sites.
+Port 3306 → MySQL database → Used by applications to connect to MySQL DB.
+</pre>
+      </section>
+
+      <!-- TOPIC‑2 (unchanged) -->
+      <section class="section">
+        <h2>Topic-2 : Linux server Setup &amp; Basic commands</h2>
+<pre>ls - The most frequently used command in Linux to list directories
+pwd - Print working directory command in Linux
+cd - Linux command to navigate through directories
+mkdir - Command used to create directories in Linux
+mv - Move or rename files in Linux
+cp - Similar usage as mv but for copying files in Linux
+rm - Delete files or directories
+touch - Create blank/empty files
+clear - Clear the terminal display
+cat - Display file contents on the terminal
+man - Access manual pages for all Linux commands
+uname - Linux command to get basic information about the OS
+whoami - Get the active username
+grep - Search for a string within an output
+head - Return the specified number of lines from the top
+tail - Return the specified number of lines from the bottom
+zip - Zip files in Linux
+unzip - Unzip files in Linux
+ssh - Secure Shell command in Linux
+ps - Display active processes
+kill and killall - Kill active processes by process ID or name
+df -h - Display disk filesystem information
+chmod - Command to change file permissions
+chown - Command for granting ownership of files or folders
+curl ifconfig.me - Display network interfaces and IP addresses
+traceroute - Trace all the network hops to reach the destination
+apt, yum - Package managers depending on the distribution
+sudo - super user Command to escalate privileges in Linux
+cal - View a command-line calendar
+top - View active processes live with their system usage
+useradd - Add a new user
+passwd - Create passwords for users
+</pre>
+      </section>
+
+      <!-- TOPIC‑3 (unchanged) -->
+      <section class="section">
+        <h2>Topic-3 : File Management &amp; User and Permission Management</h2>
+
+<pre>Command    Description    Example
+ls         List directory contents.    ls
+cd         Change directory.           cd /path/to/directory
+pwd        Show current directory.     pwd
+mkdir      Create a new directory.     mkdir new_directory
+rmdir      Remove an empty directory.  rmdir empty_directory
+rm         Delete files or directories rm file.txt
+touch      Create an empty file.       touch new_file.txt
+</pre>
+
+<h3>Vi file edit command :</h3>
+<pre>i: Insert Mode
+dd – Delete a line
+u – Undo last action
+:set nu → Show line numbers
+:set nonu → Hide line numbers
+:/
+:?
+:wq – Save and exit
+:q! – Quit without saving
+</pre>
+
+<pre>cp     Copy files or directories.       cp file.txt /path/to/destination
+mv     Move or rename files.            mv file.txt /path/to/new_location
+cat    Display file contents.           cat file.txt
+vim    Edit files in terminal.          nano file.txt
+find   Search for files.                find . -name "file.txt"
+grep   Search text using patterns.      grep "pattern" file.txt
+du     Show directory/file size.        du -sh /path/to/directory
+chmod  Change file permissions.         chmod 755 file.txt
+chown  Change file owner.               chown user:group file.txt
+</pre>
+
+<pre>useradd Sai: Add a new user
+userdel Sai : Delete a user.
+groupadd groupname: Creating Groups
+usermod -aG groupname username: Adding Users to Groups
+</pre>
+      </section>
+
+      <!-- TOPIC‑4 -->
+      <section class="section">
+        <h2>Topic-4: Process and System Monitoring Commands &amp; Networking Commands</h2>
+<pre>ps        Show running processes.        ps aux
+top       Dynamic process viewer.        top
+htop      Enhanced version of top.       htop
+kill      Send a signal to a process.    kill &lt;PID&gt;
+killall   Kill processes by name.        killall &lt;process_name&gt;
+uptime    System uptime and load.        uptime
+whoami    Current logged-in user.        whoami
+systemctl Manage systemd services.       systemctl status &lt;service_name&gt;
+free      Display memory usage.          free -h
+</pre>
+
+<pre>ping     Test connectivity               ping google.com
+ifconfig / ip a  Show interfaces         ifconfig or ip a
+netstat / ss      List ports             netstat -tuln or ss -tuln
+wget              Download file          wget http://example.com/file.zip
+traceroute        Trace route            traceroute example.com
+nslookup          DNS lookup             nslookup example.com
+ssh               Remote login           ssh user@example.com
+</pre>
+      </section>
+
+      <!-- TOPIC‑5 -->
+      <section class="section">
+        <h2>Topic-5: Webserver deployment &amp; DNS mangement</h2>
+<pre>sudo apt update
+sudo apt install apache2 -y
+systemctl enable apache2
+systemctl status apache2
+
+cd /var/www/html
+sudo vi index.html
+sudo systemctl restart apache2
+</pre>
+      </section>
+
+      <!-- TOPIC‑6 -->
+      <section class="section">
+        <h2>Topic-6 : Real Time Linux Tasks</h2>
+
+<h3>SR‑1</h3>
+<pre>sudo adduser sai
+sudo passwd sai
+sudo usermod -aG sudo sai
+</pre>
+
+<h3>SR‑2</h3>
+<pre>scp /path/to/file user@10.32.43.54:/destination/path
+</pre>
+
+<h3>SR‑3</h3>
+<pre>sudo systemctl status apache2
+sudo systemctl start apache2
+</pre>
+
+<h3>SR‑4</h3>
+<pre>top
+sudo kill -9 &lt;PID&gt;
+</pre>
+
+<h3>SR‑5</h3>
+<pre>sudo mkdir -p /opt/myapp/logs
+sudo mkdir -p /opt/myapp/config
+sudo touch /opt/myapp/config/app.conf
+</pre>
+
+<h3>SR‑6</h3>
+<pre>lsblk
+sudo growpart /dev/nvme0n1 1
+sudo resize2fs /dev/nvme0n1p1
+</pre>
+
+<h3>SR‑7</h3>
+<pre>sudo apt update
+sudo apt install git -y
+git --version
+</pre>
+
+<h3>SR‑8</h3>
+<pre>sudo useradd devops
+sudo passwd devops
+vim /etc/ssh/sshd_config
+PasswordAuthentication yes
+sudo systemctl restart ssh
+ssh devops@server-ip
+</pre>
+
+<h3>SR‑9</h3>
+<pre>Stop the EC2 instance
+Change instance type → t3.small
+Start instance
+free -h
+</pre>
+
+<h3>SR‑10</h3>
+<pre>sudo mkdir project
+sudo touch project/app.py
+sudo chmod 777 project/app.py
+</pre>
+
+      </section>
+
+    </div>
+  </div>
+
+</body>
+</html>
