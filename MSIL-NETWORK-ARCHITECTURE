@@ -1,0 +1,147 @@
+MSIL Network Architecture
+
+1. Start the Explanation: What is MSIL Using?
+“MSIL is using a Hub and Spoke network model in AWS.
+In this model, one account acts as a central networking hub, and all application accounts act as spokes.”
+
+2. Hub and Spoke Model – Detailed Explanation
+🔵 Hub Account (Networking Account)
+This is the centralized networking account.
+It contains and manages all main network services.
+Hub Responsibilities
+
+Manages Transit Gateway (TGW)
+Hosts central firewall
+Hosts Route 53 DNS zones
+Hosts public/internal ALBs
+Handles routing between accounts
+
+💡 Simple Example
+Think of the Hub like MSIL Head Office.
+All traffic must pass through Head Office →
+Security check → Routing → Forwarding.
+
+
+Spoke Accounts (Application Accounts)
+These are application-specific accounts:
+
+Development (Dev)
+UAT
+Production (Prod)
+
+Each spoke contains:
+
+Its own VPC
+Private ALB
+EKS/ EC2 workloads
+TGW attachment → connects back to Hub
+
+💡 Simple Example
+Spokes = Different MSIL Plants (Manesar, Gurgaon, Rohtak)
+Hub = MSIL Corporate HO
+Plants never directly connect; HO controls everything.
+
+Transit Gateway (TGW)
+TGW is created in the Hub Account.
+TGW = central router for all AWS accounts
+All spoke accounts connect to the TGW via TGW attachments.
+
+
+3. AWS Network Architecture Diagram (Explain Before Showing Diagram)
+
+You should say:
+
+“This architecture is designed to securely expose internal applications to the public internet, while keeping security centralized inside the Networking Account.”
+This means:
+
+Internet traffic comes only through the Hub
+App workloads remain private in Spoke accounts
+Firewall inspection happens centrally
+
+
+4. Firewall Placement – Flow Explanation
+Explain like this:
+“In MSIL, firewall is placed inside the Networking Account.
+All incoming traffic first reaches the Public/Internal ALB,
+then moves to the Firewall, where DNAT and inspection happens,
+then traffic is routed to the correct application account.”
+
+
+5. Accounts Overview
+🔵 Networking Account
+Contains:
+
+Public ALB
+Internal ALB
+Central Firewall
+Route 53 Public + Private Hosted Zones
+
+🔵 Application Accounts (Dev / UAT / Prod)
+Contains:
+
+Private ALBs
+EKS clusters
+EC2 nodes
+Only application-related resources
+
+
+6. ALB Details (Explain Clearly)
+
+ALB                              :  NamePurpose
+MSIL-PA-PUBLIC-ALB-01            : PROD Public hosting
+MSIL-PA-PUBLIC-ALB-02:           : Internal Maruti Corporate Network
+MSIL-PA-NON-PROD-PUBLIC-ALB-03   : Non-PROD Public hosting
+
+8. DNS Flow – For Public Applications
+
+User Browser (app.maruti.co.in)
+↓ 
+Domain Registrar (GoDaddy)
+↓ 
+Route 53
+↓ 
+Public ALB in Networking Account
+↓ 
+Custom Port (e.g., 8443)
+↓ 
+Firewall (DNAT + Inspection)
+↓
+Transit Gateway (TGW)
+↓
+Private ALB (Application Account)
+↓
+App Compute (EKS, EC2)
+
+
+------>  Step-by-Step Flow:
+User opens browser
+👉 app.maruti.co.in
+Request goes to: 👉 Domain Registrar (e.g., GoDaddy)
+Then resolves via: 👉 Route 53
+Traffic goes to: 👉 Public ALB (Hub Account)
+Then passes through: 👉 Custom port (e.g., 8443), Firewall (NAT & Inspection)
+Routed via: 👉 Transit Gateway (TGW)
+Reaches: 👉 Private ALB (Spoke Account)
+Finally: 👉 Application (EC2 / EKS)
+
+
+
+Traffic Flow (Response):  Same as above
+
+
+
+
+Prerequisites : MSIL-PA-PUBLIC-ALB-02: Internal Maruti network hosting
+Internal User Browser (app.maruti.co.in) 
+↓ 
+Domain registrar (eg - GoDaddy) → Route 53  
+↓ 
+Internal ALB (MSIL-PA-PUBLIC-ALB-02) 
+↓ 
+Custom Port (example: 8443) Firewall (DNAT + Inspection) 
+↓ 
+Transit Gateway (TGW) 
+↓ 
+Private ALB (in Application Account) 
+↓ 
+Application Compute (EKS, EC2, etc.)
